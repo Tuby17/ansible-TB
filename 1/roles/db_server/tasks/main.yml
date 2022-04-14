@@ -1,5 +1,49 @@
-- name: install mariadb server
-  tags: db,mariadb
-  apt:
-    name: mariadb-server
-    state: latest
+- name: setup Mysql
+  become: true
+  hosts: all
+
+    - name: install mysql
+      package:
+         name: "{{item}}"
+         state: present
+         update_cache: yes
+      loop:
+        - mysql-server
+        - mysql-client
+        - python3-mysqldb
+        - libmysqlclient-dev
+      become: yes
+       
+    - name: start and enable mysql service
+      service:
+         name: mysql
+         state: started
+         enabled: yes
+
+    - name: creating mysql user (medium_post)
+      mysql_user:
+         name: romeo
+         password: julia
+         priv: '*.*:ALL'
+         host: '%'
+         state: present
+    
+    - name: creating medium_db 
+      mysql_db:
+         name: HOME
+         state: present
+    
+    - name: Enable remote login to mysql
+      lineinfile:
+         path: /etc/mysql/mysql.conf.d/mysqld.cnf
+         regexp: '^bind-address'
+         line: 'bind-address = 0.0.0.0'
+         backup: yes
+      notify:
+        - Restart mysql
+
+  handlers:
+    - name: Restart mysql
+      service:
+        name: mysql
+        state: restarted
