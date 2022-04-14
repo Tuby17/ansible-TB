@@ -1,0 +1,23 @@
+---
+
+ - hosts: all
+   become: true
+   pre_tasks:
+
+   - name: install updates
+     tags: always
+     apt:
+       upgrade: dist
+       update_cache: yes
+
+ - hosts: all
+   become: true
+   tasks:
+
+   - name: create john user
+     ansible.builtin.user:
+       name: john
+       password: jozsi
+       shell: /bin/bash
+       groups: admins,developers
+       append: yes
