@@ -4,18 +4,18 @@
     name:
       - apache2
       - libapache2-mod-php
-      - php
-      - php-xml
-      - php-mbstring
-      - php-curl
-      - php-mysql
+      - php8.0
+      - php8.0-xml
+      - php8.0-mbstring
+      - php8.0-curl
+      - php8.0-mysql
     state: present
     update_cache: yes
 
 - name: 'apache : enable mysqli.allow_local_infile'
   lineinfile:
     line: mysqli.allow_local_infile = On
-    path: /etc/php/7.2/apache2/php.ini
+    path: /etc/php/8.0/apache2/php.ini
     regex: mysqli.allow_local_infile = On
     state: present
 
