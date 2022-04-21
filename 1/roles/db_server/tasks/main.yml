@@ -1,13 +1,11 @@
 - name: Installing Mysql and dependencies
   apt:
-    name: "{{item}}"
+    name:
+      - mysql-server
+      - mysql-client
+      - python3-mysqldb
+      - libmysqlclient-dev
     state: present
-    update_chace: yes
-  loop:
-    - mysql-server
-    - mysql-client
-    - python3-mysqldb
-    - libmysqlclient-dev
   become: yes
       
 - name: start and enable mysql service
@@ -37,9 +35,8 @@
      backup: yes
 
 - name: Restart mysql
-  systemd: 
+  service: 
     daemon_reload: yes
     enabled: yes
-    force: yes
     name: mysql
     state: restarted
