@@ -1,5 +1,6 @@
 ---
 - name: 'apache : install packages'
+  become: yes
   apt:
     name:
       - apache2
@@ -20,7 +21,7 @@
 - name: 'apache : enable mysqli.allow_local_infile'
   lineinfile:
     line: mysqli.allow_local_infile = On
-    path: /etc/php/7.2/apache2/php.ini
+    path: /etc/php/8.0/apache2/php.ini
     regex: mysqli.allow_local_infile = On
     state: present
 

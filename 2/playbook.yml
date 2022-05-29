@@ -1,7 +1,8 @@
 ---
 - name: ReadMe
   hosts: all
+  become: yes
 
   roles:
-    - common
     - web
+    - common
