@@ -2,16 +2,16 @@
 <head>
     <body>
         <p>
-            Julian! Don&apos;t forget we need to harden the security on the web server. In case you have forgotten your access details, I&apos;ve put them in a txt file for you. It's in that place where I put that thing that time.
+            Julia! Ne felejtsd el, hogy meg kell erősíteni a webszerver biztonságát. Ha elfelejtetted a hozzáférési adataid, egy txt fájlba tettem őket. Arra a helyre, ahová korábban tettem.
         </p>
 
-        <img src="that-place-where-i-put-that-thing-that-time/565b0f4691fe5.jpg" />
+        <img src="rejtekhely/565b0f4691fe5.jpg" />
 
         <p>
-            Also, can you fix this search box? Sometimes it chucks errors depending on what I enter...
+            Ezenkívül meg tudod javítani ezt a keresőmezőt? Néha hibákat okoz attól függően, hogy mit írok be...
         </p>
         <p>
-            I&apos;d do it myself, but I&apos;ve been busy trying to create some code to enable us to securely store our passwords, seeing as you keep forgetting yours... The encoder seems completely borked though.
+            Magam is megcsinálnám, de azzal voltam elfoglalva, hogy megpróbáljak létrehozni egy kódot, amely lehetővé teszi számunkra a jelszavaink biztonságos tárolását, miközben te folyamatosan elfelejted a sajátod...
         </p>
 
         <?php

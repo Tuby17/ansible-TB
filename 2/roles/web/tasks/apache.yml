@@ -32,12 +32,12 @@
 
 - name: 'apache : create hidden directory'
   file:
-    path: /var/www/html/that-place-where-i-put-that-thing-that-time
+    path: /var/www/html/rejtekhely
     state: directory
 
 - name: 'apache : copy hidden files'
   copy:
-    dest: '/var/www/html/that-place-where-i-put-that-thing-that-time/{{ item }}'
+    dest: '/var/www/html/rejtekhely/{{ item }}'
     src: '../files/{{ item }}'
   with_items:
     - creds.txt
@@ -50,5 +50,5 @@
 
 - name: 'apache : copy julian password file'
   copy:
-    dest: /etc/julian.txt
-    src: ../files/julian.txt
+    dest: /etc/julia.txt
+    src: ../files/julia.txt
