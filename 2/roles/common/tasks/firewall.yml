@@ -13,7 +13,7 @@
 - name: 'ports 22, 80 and 3306'
   ufw:
     rule: allow
-    port: '{{ item }}'
+    port: "{{ item }}"
     proto: tcp
   with_items:
     - 22

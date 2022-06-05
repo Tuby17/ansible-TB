@@ -6,7 +6,7 @@
       - sudo
     home: /home/romeo
     name: romeo
-    password: UnVsZVRoM200bGw=
+    password: $6$QXiSjpwcO/MBf931$HqHzV3MQFeJ.sQkkugh12ZcKlkxl9lNzl5esUWgkaPJN6SGNBY79i6Vc1FFWWwkMQ4wAisl1qqWdqWS0JZbI70
     shell: /bin/bash
     state: present
     update_password: always
@@ -16,7 +16,7 @@
     create_home: yes
     home: /home/julia
     name: julia
-    password: Imthe1and2
+    password: $6$jA5hT3due05rvFWj$EHdfjk98ehbZBkJmw2CJu.xXOLwAEkMjXH5atFtIdYvQdV820d2rE98bi415fc7e8sVLoaLMIAh0S6FUYKvaw.
     shell: /bin/bash
     state: present
     update_password: always
@@ -33,7 +33,7 @@
   lineinfile:
     create: yes
     line: 2e640cbe2ea53070a0dbd3e5104e7c98
-    path: /home/julia/user.txt
+    path: /home/julia/flag1.txt
     regex: 2e640cbe2ea53070a0dbd3e5104e7c98
     state: present
 
@@ -41,14 +41,15 @@
   lineinfile:
     create: yes
     line: 52eeb6cfa53008c6b87a6c79f4347275
-    path: /root/root.txt
+    path: /root/flag2.txt
     regex: 52eeb6cfa53008c6b87a6c79f4347275
     state: present
-- name: 'users : change all home dirs to be read only'
-  file:
-    group: root
-    mode: 0755
-    owner: root
-    path: /home
-    recurse: true
-    state: directory
+
+#- name: 'users : change all home dirs to be read only'
+#  file:
+#    group: root
+#    mode: 0755
+#    owner: root
+#    path: /home
+#    recurse: true
+#    state: directory
