@@ -1,5 +1,5 @@
 ---
-- name: 'users : create romeo user'
+- name: 'users : create romeo'
   user:
     create_home: yes
     groups:
@@ -11,7 +11,7 @@
     state: present
     update_password: always
 
-- name: 'users : create julia user'
+- name: 'users : create julia'
   user:
     create_home: yes
     home: /home/julia
@@ -21,7 +21,7 @@
     state: present
     update_password: always
 
-- name: 'users : remove existing bash history'
+- name: 'remove bash history'
   file:
     path: '{{ item }}'
     state: absent
@@ -29,7 +29,7 @@
     - /home/romeo/.bash_history
     - /home/julia/.bash_history
 
-- name: 'users : create user flag'
+- name: 'user flag'
   lineinfile:
     create: yes
     line: 2e640cbe2ea53070a0dbd3e5104e7c98
@@ -37,19 +37,16 @@
     regex: 2e640cbe2ea53070a0dbd3e5104e7c98
     state: present
 
-- name: 'users : create root flag'
+- name: Line to romeo
+  ansible.builtin.lineinfile:
+    path: /home/julia/flag1.txt
+    line: romeo for root UnVsZVRoZW1BbGw=
+    create: yes
+
+- name: 'root flag'
   lineinfile:
     create: yes
     line: 52eeb6cfa53008c6b87a6c79f4347275
     path: /root/flag2.txt
     regex: 52eeb6cfa53008c6b87a6c79f4347275
     state: present
-
-#- name: 'users : change all home dirs to be read only'
-#  file:
-#    group: root
-#    mode: 0755
-#    owner: root
-#    path: /home
-#    recurse: true
-#    state: directory

@@ -1,8 +1,8 @@
 ---
 - name: PLAY
   hosts: all
+  vars_files:
   become: yes
-
   roles:
-    - web
     - common
+    - web

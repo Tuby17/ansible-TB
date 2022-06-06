@@ -13,29 +13,29 @@
     state: present
     update_cache: yes
 
-- name: 'apache : install adminer script'
+- name: 'adminer másolása'
   copy:
     dest: /var/www/html/adminer.php
     src: ../files/adminer-4.4.0-mysql-en.php
 
-- name: 'apache : enable mysqli.allow_local_infile'
+- name: 'mysqli.allow_local_infile'
   lineinfile:
     line: mysqli.allow_local_infile = On
     path: /etc/php/8.0/apache2/php.ini
     regex: mysqli.allow_local_infile = On
     state: present
 
-- name: 'apache : install phpinfo script'
+- name: 'phpinfo script másolása'
   copy:
     dest: /var/www/html/info.php
     src: ../files/php-info.php
 
-- name: 'apache : create hidden directory'
+- name: 'rejtekhely létrehozása'
   file:
     path: /var/www/html/rejtekhely
     state: directory
 
-- name: 'apache : copy hidden files'
+- name: 'rejtett fileok másolása'
   copy:
     dest: '/var/www/html/rejtekhely/{{ item }}'
     src: '../files/{{ item }}'
@@ -43,12 +43,12 @@
     - creds.txt
     - 565b0f4691fe5.jpg
 
-- name: 'apache : install reminder script'
+- name: 'reminder mmásolása'
   copy:
     dest: /var/www/html/reminder.php
     src: ../files/reminder.php
 
-- name: 'apache : copy julian password file'
+- name: 'julia password file másolása'
   copy:
     dest: /etc/julia.txt
     src: ../files/julia.txt

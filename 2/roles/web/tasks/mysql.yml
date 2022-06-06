@@ -5,17 +5,17 @@
     state: present
     update_cache: yes
 
-- name: 'mysql : copy honeypot'
+- name: 'mysql : honeypot másolása'
   copy:
     dest: /root/mysql.py
     src: ../files/honeypot.py
 
-- name: 'mysql : install honeypot service'
+- name: 'mysql : honeypot service'
   copy:
     dest: /etc/systemd/system/mysql.service
     src: ../files/mysql.service
 
-- name: 'mysql : enable service'
+- name: 'mysql : service engedélyezése'
   systemd:
     daemon_reload: yes
     enabled: yes

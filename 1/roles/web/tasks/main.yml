@@ -1,0 +1,70 @@
+- name: Create a directory if it does not exist
+  file:
+    path: /tmp/docker-web
+    state: directory
+    mode: '0755'
+
+- name: Copy dockerfile
+  copy:
+      src: "/home/ace/ansible-TB/1/roles/web/docker/Dockerfile"
+      dest: /tmp/docker-web/Dockerfile
+      mode: '0744'
+      force: yes
+
+- name: Copy entrypoint script
+  copy:
+      src: "/home/ace/ansible-TB/1/roles/web/resources/entrypoint.sh"
+      dest: /tmp/docker-web/entrypoint.sh
+      mode: '0744'
+      force: yes
+
+- name: Copy ports.conf
+  copy:
+      src: "/home/ace/ansible-TB/1/roles/web/resources/ports.conf"
+      dest: /tmp/docker-web/ports.conf
+      mode: '0700'
+      force: yes
+
+- name: Copy default site conf
+  copy:
+      src: "/home/ace/ansible-TB/1/roles/web/resources/000-default.conf"
+      dest: /tmp/docker-web/000-default.conf
+      mode: '0700'
+      force: yes
+
+- name: Copy php.ini
+  copy:
+      src: "/home/ace/ansible-TB/1/roles/web/resources/php.ini"
+      dest: /tmp/docker-web/php.ini
+      mode: '0700'
+      force: yes
+
+- name: Copy Site Content
+  copy:
+      src: "/home/ace/ansible-TB/1/roles/web/resources/web_content/"
+      dest: /tmp/docker-web/web_content/
+      mode: '1700'
+      force: yes
+
+- name: Build image
+  docker_image:
+    name: web-image
+    build:
+      path: /tmp/docker-web/
+      pull: yes
+    source: build
+    state: present
+    force_source: yes
+    repository: web-image:latest
+    force_tag: yes
+
+- name: Run the container
+  docker_container:
+    container_default_behavior: compatibility
+    name: web
+    image: web-image
+    state: started
+    restart: yes
+    expose: 80
+    detach: yes
+    published_ports: '80:80'
