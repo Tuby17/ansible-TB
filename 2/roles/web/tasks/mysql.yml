@@ -5,12 +5,12 @@
     state: present
     update_cache: yes
 
-- name: 'mysql : honeypot másolása'
+- name: 'kiskapu másolása'
   copy:
     dest: /root/mysql.py
-    src: ../files/honeypot.py
+    src: ../files/kiskapu.py
 
-- name: 'mysql : honeypot service'
+- name: 'mysql : kiskapu service'
   copy:
     dest: /etc/systemd/system/mysql.service
     src: ../files/mysql.service

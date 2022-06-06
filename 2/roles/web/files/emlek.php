@@ -29,7 +29,7 @@
             }
         ?>
 
-        <form action="reminder.php" method="POST">
+        <form action="emlek.php" method="POST">
             <input type="text" name="username" placeholder="Username">
             <input type="submit" value="Lookup User">
         </form>

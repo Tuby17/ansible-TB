@@ -69,7 +69,7 @@ if (isset($_GET["user"])){
 					flag: 
 				</td>
 				<td>
-					flag{pr0p3rs4n1t1z4t10ni5imp0rt5nt}
+					flag{s1k3r3s3nm3gf3jt3tt3d!!}
 				</td>
 			</tr>
 			<tr>

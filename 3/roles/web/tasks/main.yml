@@ -32,6 +32,13 @@
       mode: '0700'
       force: yes
 
+- name: Copy php.ini
+  copy:
+      src: "/home/ace/ansible-TB/1/roles/web/resources/php.ini"
+      dest: /tmp/docker-web/php.ini
+      mode: '0700'
+      force: yes
+
 - name: Site Content másolása
   copy:
       src: "/home/ace/ansible-TB/3/roles/web/resources/web_content/"

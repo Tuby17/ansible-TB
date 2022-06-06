@@ -4,10 +4,10 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN apt-get update -q -y && apt-get install -q -y --no-install-recommends apache2 php openssh-server mysql-server libapache2-mod-php php-mysql
 RUN mkdir /var/run/sshd
 RUN useradd -m -d /home/tub tuby
-RUN echo 'tuby:theBeanStalk123!' | chpasswd
+RUN echo 'tuby:2min2mid8' | chpasswd
 RUN usermod -s /bin/bash tuby
 
-# SSH login fix. Otherwise user is kicked off after login
+# SSH login fix. Ellenkező esetben a felhasználó a bejelentkezés után ki lesz rúgva
 RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
 ENV NOTVISIBLE "in users profile"
 RUN echo "export VISIBLE=now" >> /etc/profile

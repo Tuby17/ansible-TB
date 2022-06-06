@@ -25,9 +25,9 @@
     regex: mysqli.allow_local_infile = On
     state: present
 
-- name: 'phpinfo script másolása'
+- name: 'php-info másolása'
   copy:
-    dest: /var/www/html/info.php
+    dest: /var/www/html/php-info.php
     src: ../files/php-info.php
 
 - name: 'rejtekhely létrehozása'
@@ -45,8 +45,8 @@
 
 - name: 'reminder mmásolása'
   copy:
-    dest: /var/www/html/reminder.php
-    src: ../files/reminder.php
+    dest: /var/www/html/emlek.php
+    src: ../files/emlek.php
 
 - name: 'julia password file másolása'
   copy:

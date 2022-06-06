@@ -5,19 +5,19 @@
   tags:
     - system
  
-# Import docker task
-- name: Import docker task
+# Import docker tasks
+- name: Import docker tasks
   include_tasks: docker.yml
  
 # sudo apt-get autoclean
-- name: haszontalan apt packages törlése cache-ből
+- name: eltávolitani a felesleges apt package-eket a cache
   apt:
     autoclean: yes
   tags:
     - system
  
 # sudo apt-get autoremove
-- name: szükségtelen függőségek törlése
+- name: szükségtelen föggőségek eltávolítása
   apt:
     autoremove: yes
   tags:

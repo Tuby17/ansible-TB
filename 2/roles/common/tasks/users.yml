@@ -21,14 +21,6 @@
     state: present
     update_password: always
 
-- name: 'remove bash history'
-  file:
-    path: '{{ item }}'
-    state: absent
-  with_items:
-    - /home/romeo/.bash_history
-    - /home/julia/.bash_history
-
 - name: 'user flag'
   lineinfile:
     create: yes
@@ -37,7 +29,7 @@
     regex: 2e640cbe2ea53070a0dbd3e5104e7c98
     state: present
 
-- name: Line to romeo
+- name: 'Sor beillesztés flag 1'
   ansible.builtin.lineinfile:
     path: /home/julia/flag1.txt
     line: romeo for root UnVsZVRoZW1BbGw=

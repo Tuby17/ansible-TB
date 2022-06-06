@@ -1,0 +1,35 @@
+- name: Create a directory ha nem létezik
+  file:
+    path: /tmp/docker-linux
+    state: directory
+    mode: '0755'
+
+- name: dockerfile másolása
+  copy:
+      src: "/home/ace/ansible-TB/4/roles/linux/docker/Dockerfile"
+      dest: /tmp/docker-linux/Dockerfile
+      mode: '0744'
+      force: yes
+
+- name: Build image
+  docker_image:
+    name: linux-image
+    build:
+      path: /tmp/docker-linux/
+      pull: yes
+    source: build
+    state: present
+    force_source: yes
+    repository: linux-image:latest
+    force_tag: yes
+
+- name: Run the container
+  docker_container:
+    container_default_behavior: compatibility
+    name: linux
+    image: linux-image
+    state: started
+    restart: yes
+    expose: 22
+    detach: yes
+    published_ports: '6007:22'
