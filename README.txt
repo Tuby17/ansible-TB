@@ -36,3 +36,6 @@ Az ansible.cfg tartalmazza, hogy milyen invetory fájlthasználunk és és a pri
    luca:the77Magic
    flag{th3_sl0v3nian_m4g1c}
 
+5. SSH feladat Netstat
+
+

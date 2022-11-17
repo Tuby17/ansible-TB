@@ -1,0 +1,56 @@
+- name: Create a directory ha nem létezik
+  file:
+    path: /tmp/docker-linux
+    state: directory
+    mode: '0755'
+
+- name: dockerfile másolása
+  copy:
+      src: "/home/ace/ansible-TB/5/roles/linux/docker/Dockerfile"
+      dest: /tmp/docker-linux/Dockerfile
+      mode: '0744'
+      force: yes
+
+- name: entrypoint script masolas
+  copy:
+      src: "/home/ace/ansible-TB/5/roles/linux/resources/entrypoint.sh"
+      dest: /tmp/docker-linux/entrypoint.sh
+      mode: '0744'
+      force: yes
+
+- name: ports.conf masolas
+  copy:
+      src: "/home/ace/ansible-TB/5/roles/linux/resources/ports.conf"
+      dest: /tmp/docker-linux/ports.conf
+      mode: '0700'
+      force: yes
+
+- name: default site conf masolas
+  copy:
+      src: "/home/ace/ansible-TB/5/roles/linux/resources/000-default.conf"
+      dest: /tmp/docker-linux/000-default.conf
+      mode: '0700'
+      force: yes
+
+- name: Build image
+  docker_image:
+    name: linux-image
+    build:
+      path: /tmp/docker-linux/
+      pull: yes
+    source: build
+    state: present
+    force_source: yes
+    repository: linux-image:latest
+    force_tag: yes
+
+- name: Run the container
+  docker_container:
+    container_default_behavior: compatibility
+    name: linux
+    image: linux-image
+    state: started
+    restart: yes
+    expose: 22
+    detach: yes
+    published_ports: '6010:22'

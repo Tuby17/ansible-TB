@@ -65,6 +65,6 @@
     image: web-image
     state: started
     restart: yes
-#    expose: 80
+    expose: 80
     detach: yes
     published_ports: '80:80'
