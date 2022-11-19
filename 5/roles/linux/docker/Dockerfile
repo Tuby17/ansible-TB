@@ -1,23 +1,15 @@
 FROM ubuntu:18.04
 
-RUN apt-get update && apt-get install -y openssh-server apache2 curl net-tools
-RUN mkdir /var/run/sshd
+RUN apt-get update && apt-get install -y vsftpd
 RUN useradd -m -d /home/balint balint
-RUN echo 'balint:BalintTuboly' | chpasswd
-RUN usermod -s /bin/bash balint
+RUN echo 'balint:theTuboly17' | chpasswd
 
-# SSH login fix. Otherwise user is kicked off after login
-RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
-ENV NOTVISIBLE "in users profile"
-RUN echo "export VISIBLE=now" >> /etc/profile
-
-EXPOSE 22
-RUN useradd -m -d /home/webserver webserver
-COPY --chown=webserver:webserver entrypoint.sh /root/entrypoint.sh
-COPY --chown=webserver:webserver 000-default.conf /etc/apache2/sites-available/000-default.conf
-COPY --chown=webserver:webserver ports.conf /etc/apache2/ports.conf
-RUN mv /var/www/html/index.html /tmp/old
-RUN echo "flag{c4nt_st0p_th3_f33l1ng}" >> /var/www/html/index.html
-RUN chown -R www-data:www-data /var/www/html
-RUN chmod -R 700 /var/www/html
+EXPOSE 21
+COPY --chown=balint:balint entrypoint.sh /root/entrypoint.sh
+COPY --chown=root:root vsftpd.conf /etc/vsftpd.conf
+RUN echo "flag{b4d_r3put4t10n}" >> /home/balint/flag
+RUN mkdir /tmp/empty
+RUN chmod 555 /tmp/empty
+RUN mkdir /var/ftp
+RUN echo "balint:theTuboly17" | base64 >> /var/ftp/.hidden_creds
 ENTRYPOINT ["bash", "-c", "/root/entrypoint.sh"]

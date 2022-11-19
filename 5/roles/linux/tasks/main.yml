@@ -1,35 +1,28 @@
-- name: Create a directory ha nem létezik
+- name: Create a directory if it does not exist
   file:
     path: /tmp/docker-linux
     state: directory
     mode: '0755'
 
-- name: dockerfile másolása
+- name: Copy dockefile
   copy:
-      src: "/home/ace/ansible-TB/5/roles/linux/docker/Dockerfile"
+      src: "~/ansible-TB/5/roles/linux/docker/Dockerfile"
       dest: /tmp/docker-linux/Dockerfile
       mode: '0744'
       force: yes
 
-- name: entrypoint script masolas
+- name: Copy entrypoint script
   copy:
-      src: "/home/ace/ansible-TB/5/roles/linux/resources/entrypoint.sh"
+      src: "~/ansible-TB/5/roles/linux/resources/entrypoint.sh"
       dest: /tmp/docker-linux/entrypoint.sh
       mode: '0744'
       force: yes
 
-- name: ports.conf masolas
+- name: Copy vsftpd config
   copy:
-      src: "/home/ace/ansible-TB/5/roles/linux/resources/ports.conf"
-      dest: /tmp/docker-linux/ports.conf
-      mode: '0700'
-      force: yes
-
-- name: default site conf masolas
-  copy:
-      src: "/home/ace/ansible-TB/5/roles/linux/resources/000-default.conf"
-      dest: /tmp/docker-linux/000-default.conf
-      mode: '0700'
+      src: "~/ansible-TB/5/roles/linux/resources/vsftpd.conf"
+      dest: /tmp/docker-linux/vsftpd.conf
+      mode: '0744'
       force: yes
 
 - name: Build image
@@ -37,7 +30,6 @@
     name: linux-image
     build:
       path: /tmp/docker-linux/
-      pull: yes
     source: build
     state: present
     force_source: yes
@@ -46,11 +38,10 @@
 
 - name: Run the container
   docker_container:
-    container_default_behavior: compatibility
     name: linux
     image: linux-image
     state: started
     restart: yes
-    expose: 22
+    expose: 21
     detach: yes
-    published_ports: '6010:22'
+    published_ports: "10000-10100:10000-10100, 6013:6013, 20:20"

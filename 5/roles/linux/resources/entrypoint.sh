@@ -1,2 +1,1 @@
-service apache2 restart
-/usr/sbin/sshd -D
+/usr/sbin/vsftpd /etc/vsftpd.conf
