@@ -1,0 +1,61 @@
+- name: Create a directory
+  file:
+    path: "/tmp/docker-web"
+    state: directory
+    mode: '0755'
+
+- name: Copy dockerfile
+  copy:
+      src: "~/ansible-TB/6/roles/web/docker/Dockerfile"
+      dest: "/tmp/docker-web/Dockerfile"
+      mode: '0744'
+      force: yes
+
+- name: Copy entrypoint script
+  copy:
+      src: "~/ansible-TB/6/roles/web/resources/entrypoint.sh"
+      dest: "/tmp/docker-web/entrypoint.sh"
+      mode: '0744'
+      force: yes
+
+- name: Copy ports.conf
+  copy:
+      src: "~/ansible-TB/6/roles/web/resources/ports.conf"
+      dest: "/tmp/docker-web/ports.conf"
+      mode: '0700'
+      force: yes
+
+- name: Copy default site conf
+  copy:
+      src: "~/ansible-TB/6/roles/web/resources/000-default.conf"
+      dest: "/tmp/docker-web/000-default.conf"
+      mode: '0700'
+      force: yes
+
+- name: Copy Site Content
+  copy:
+      src: "~/ansible-TB/6/roles/web/resources/web_content/"
+      dest: "/tmp/docker-web/web_content/"
+      mode: '1700'
+      force: yes
+
+- name: Build image
+  docker_image:
+    name: "web-image"
+    build:
+      path: "/tmp/docker-web/"
+    source: build
+    state: present
+    force_source: yes
+    repository: "web-image:latest"
+    force_tag: yes
+
+- name: Run the container
+  docker_container:
+    name: "web"
+    image: "web-image"
+    state: started
+    restart: yes
+    expose: "{{ port }}"
+    detach: yes
+    published_ports: '{{ port }}:{{ port }}'

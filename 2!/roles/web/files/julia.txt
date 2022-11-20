@@ -1,2 +1,0 @@
-U: julia
-P: Imthe1and2

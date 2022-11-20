@@ -1,0 +1,40 @@
+- name: Create a directory
+  file:
+    path: /tmp/docker-linux
+    state: directory
+    mode: '0755'
+
+- name: Copy dockerfile
+  copy:
+      src: "/~/ansible-TB/8/roles/linux/docker/Dockerfile"
+      dest: /tmp/docker-linux/Dockerfile
+      mode: '0744'
+      force: yes
+
+- name: Copy entrypoint script
+  copy:
+      src: "~/ansible-TB/8/roles/linux/resources/entrypoint.sh"
+      dest: /tmp/docker-linux/entrypoint.sh
+      mode: '0744'
+      force: yes
+
+- name: Build image
+  docker_image:
+    name: linux-image
+    build:
+      path: /tmp/docker-linux/
+    source: build
+    state: present
+    force_source: yes
+    repository: linux-image:latest
+    force_tag: yes
+
+- name: Run the container
+  docker_container:
+    name: linux
+    image: linux-image
+    state: started
+    restart: yes
+    expose: 22
+    detach: yes
+    published_ports: '6003:22'

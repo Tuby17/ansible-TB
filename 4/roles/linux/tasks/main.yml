@@ -6,7 +6,7 @@
 
 - name: dockerfile másolása
   copy:
-      src: "/home/ace/ansible-TB/4/roles/linux/docker/Dockerfile"
+      src: "~/ansible-TB/4/roles/linux/docker/Dockerfile"
       dest: /tmp/docker-linux/Dockerfile
       mode: '0744'
       force: yes

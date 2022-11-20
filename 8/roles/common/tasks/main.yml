@@ -1,0 +1,25 @@
+# sudo apt-get update
+- name: Update apt packages
+  apt:
+    update_cache: yes
+    allow_unauthenticated: yes
+  tags:
+    - system
+ 
+# Importálja a docker taskot
+- name: Import docker tasks
+  include_tasks: docker.yml
+ 
+# sudo apt-get autoclean
+- name: eltávolitani a felesleges apt package-eket a cache
+  apt:
+    autoclean: yes
+  tags:
+    - system
+ 
+# sudo apt-get autoremove
+- name: szükségtelen föggőségek eltávolítása
+  apt:
+    autoremove: yes
+  tags:
+    - system
