@@ -6,7 +6,7 @@ session_start();
 }
 $DBUSER = 'webserver';
 $DBPASS = 'demoPass#00';
-system('mysql -u '.$DBUSER.' -p'.$DBPASS.' < sqlitraining_ctf.sql');
+system('mysql -u '.$DBUSER.' -p'.$DBPASS.' < sql_ctf.sql');
 include("db_config.php");
 ini_set('display_errors', 1);
 ?>

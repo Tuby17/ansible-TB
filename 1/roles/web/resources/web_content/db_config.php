@@ -3,7 +3,7 @@
 $DBUSER = 'webserver';
 $DBPASS = 'demoPass#00';
 
-$con=mysqli_connect("127.0.0.1",$DBUSER,$DBPASS,"sqlitrainingctf");
+$con=mysqli_connect("127.0.0.1",$DBUSER,$DBPASS,"sqlctf");
 
 // Check connection
 if (mysqli_connect_errno($con))

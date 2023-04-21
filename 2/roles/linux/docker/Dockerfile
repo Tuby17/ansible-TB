@@ -1,6 +1,7 @@
-FROM ubuntu:18.04
-
-RUN apt-get update && apt-get install -y netcat libcap2-bin
+FROM vcatechnology/linux-mint
+ENV TZ=Europe/Budapest
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+RUN apt-get update && apt-get upgrade -y && apt-get install -y netcat
 RUN useradd -m -d /home/balint balint
 RUN echo 'balint:theTuboly17' | chpasswd
 RUN usermod -s /bin/bash balint

@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `is_admin`) VALUES
-(1, 'joe', '6c1f4d1e349337e97a0366c95bf5d2d2', 'no');
+(1, 'joe', 'b1zt0sn3mj0sszr4', 'no');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

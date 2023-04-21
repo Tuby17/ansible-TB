@@ -1,17 +1,19 @@
-FROM ubuntu:18.04
+FROM ubuntu:22.04
 ENV TZ=Europe/Budapest
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN apt-get update -q -y && apt-get install -q -y --no-install-recommends apache2 php openssh-server mysql-server libapache2-mod-php php-mysql
 RUN mkdir /var/run/sshd
-RUN useradd -m -d /home/tub tuby
+RUN useradd -m -d /home/tuby tuby
 RUN echo 'tuby:2min2mid8' | chpasswd
 RUN usermod -s /bin/bash tuby
 
+
+#SSH fixalas  
 RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
 ENV NOTVISIBLE "in users profile"
 RUN echo "export VISIBLE=now" >> /etc/profile
 
-EXPOSE 80
+EXPOSE 8006
 RUN useradd -m -d /home/webserver webserver
 COPY --chown=webserver:webserver entrypoint.sh /root/entrypoint.sh
 COPY --chown=webserver:webserver 000-default.conf /etc/apache2/sites-available/000-default.conf

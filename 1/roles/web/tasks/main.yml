@@ -65,6 +65,6 @@
     image: web-image
     state: started
     restart: yes
-    expose: 80
+    expose: 8006
     detach: yes
-    published_ports: '80:80'
+    published_ports: '8006:8006'

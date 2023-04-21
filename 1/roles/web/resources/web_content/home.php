@@ -9,7 +9,7 @@ ini_set('display_errors', 0);
 ?>
 
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Home - SQL Injection Training App</title>
+    <title>Home - SQL Injection </title>
 
     <link href="./css/htmlstyles.css" rel="stylesheet">
 	</head>
@@ -19,7 +19,7 @@ ini_set('display_errors', 0);
 		
 		<div class="jumbotron">
 			<p class="lead" style="color:white">
-				Home! Shows account details!</a>
+				Home! Account details!</a>
 				</p>
 		</div>
 		
@@ -48,7 +48,7 @@ if (isset($_GET["user"])){
 			
 			<tr>
 				<td>
-					Username:  
+					UserName:  
 				</td>
 				<td>
 					<?php echo $row[1]; ?>

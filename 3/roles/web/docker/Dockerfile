@@ -1,9 +1,10 @@
-FROM ubuntu:18.04
+FROM vcatechnology/linux-mint
+
 ENV TZ=Europe/Budapest
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN apt-get update -q -y && apt-get install -q -y --no-install-recommends apache2 php openssh-server libapache2-mod-php
 RUN mkdir /var/run/sshd
-RUN useradd -m -d /home/tuby tuby
+RUN useradd -rm -d /home/gep12 -s /bin/bash -g root -G sudo -u 1000 tuby
 RUN echo 'tuby:2min2mid8' | chpasswd
 RUN usermod -s /bin/bash tuby
 
