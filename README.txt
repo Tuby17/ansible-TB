@@ -35,17 +35,17 @@ Az ansible.cfg tartalmazza, hogy milyen invetory fájlthasználunk és és a pri
   flag{n0th1ng_but_4_g00d_t1m3}
   
 7. Sudo (nincs jelszó)
-   Challenge is to ssh onto a box and grab the flag in `catme.txt` which is in the user's home directory, BUT the file is owned by root and permissions are 600, so sudo must be used. 
+   ssh-n keresztül be kell jutni meg kell keresni a catme.txt-t ami a felhasználó home könyvtárában van de a fájl a root tulajdona a jogosultságok 600 ezért sudo-t kell használni
    flag{ZászlóLászló}
 
 8. Parancssori paraméter
-   Challenge is to ssh onto a box and grab the flag that is password as a command line parameter in a running process. 
+   be kell jutni a rendszerbe ahol a flag egy futó folyamat parancssori paramétere 
    flag{n3ed5_S0mb0dy_T0_L0v3}
    
 9.chmod
-  Challenge is to ssh onto a box and decode the base64 encoded flag.
+  bejutás után meg kell szerezni a user home könyvtárában lévő fájlból a flag-et ami Base64 ben van kódolva
   flag{L0v1ng_1n_3l3v4t0r}
   
 10. $PATH
-    Challenge is to ssh onto a box and grab the flag that is in the $PATH variable. 
+     Bejutás után meg kell szerezni a flag-et ami a $PATH változóban van 
     flag{H3r3_1_6o_4g41n}
