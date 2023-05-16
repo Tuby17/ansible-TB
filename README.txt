@@ -1,6 +1,5 @@
-A fealdatok telepítéséhez kell egy 1  ansible parancsokat futtató környezet és egy a feladatnak helytadó host pl.: virtuális gép. A két eszköz között ssh kapcsolatra lesz szükség valamint a vezérlő gép esetében az ansible összes szükséges összetevőjének megléte.
-At inventory fájlokat mindig a vezérleni kívánt gép elérési útjával kell ellátni.
-Az ansible.cfg tartalmazza, hogy milyen invetory fájlthasználunk és és a privát kulcsunk elérési útját.
+Az inventory fájlokat mindig a vezérleni kívánt gép elérési útjával kell ellátni.
+Az ansible.cfg tartalmazza, hogy milyen invetory fájlt használunk és és a privát kulcsunk elérési útját.
 
 
 1. SQL Injection feladat.
