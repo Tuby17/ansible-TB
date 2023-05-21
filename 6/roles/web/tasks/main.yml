@@ -58,4 +58,4 @@
     restart: yes
     expose: 8010
     detach: yes
-    published_ports: 8010:8010
+    published_ports: '8010:8010'

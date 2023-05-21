@@ -11,7 +11,7 @@ RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so
 ENV NOTVISIBLE "in users profile"
 RUN echo "export VISIBLE=now" >> /etc/profile
 
-EXPOSE 80
+EXPOSE 22
 CMD ["/usr/sbin/sshd", "-D"]
 ENV HOME /root
 RUN echo "flag{th3_sl0v3nian_m4g1c}" | base64 >> /home/luca/nagyon-titkos-adta
