@@ -9,7 +9,7 @@ ini_set('display_errors', 0);
 ?>
 
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Home - SQL Injection </title>
+    <title>Home - SQL Injection Training App</title>
 
     <link href="./css/htmlstyles.css" rel="stylesheet">
 	</head>
@@ -19,7 +19,7 @@ ini_set('display_errors', 0);
 		
 		<div class="jumbotron">
 			<p class="lead" style="color:white">
-				Home! Account details!</a>
+				Home! Shows account details!</a>
 				</p>
 		</div>
 		
@@ -27,8 +27,10 @@ ini_set('display_errors', 0);
 if (isset($_GET["user"])){
 		$user = $_GET["user"];
 		$q = "Select * from users where username = '".$user."'";
+		//echo $q."<br /><br />";
 		if (!mysqli_query($con,$q))
 	{
+		//die('Error: ' . mysqli_error($con));
 	}
 		$result = mysqli_query($con,$q);
 		
@@ -48,7 +50,7 @@ if (isset($_GET["user"])){
 			
 			<tr>
 				<td>
-					UserName:  
+					Username:  
 				</td>
 				<td>
 					<?php echo $row[1]; ?>
